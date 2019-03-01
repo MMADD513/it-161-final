@@ -1,0 +1,3 @@
+2018/11/20 02:04:59 - FMain.windowOpened(FMain.java:164)
+	Utilities.CDatabaseUtilities.LoadListBoxFromDatabase(CDatabaseUtilities.java:419)
+null

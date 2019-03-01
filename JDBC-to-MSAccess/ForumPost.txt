@@ -1,0 +1,43 @@
+I found a reasonable solution that allows for use of existing code with a change only to open database connection logic.
+
+UCanAccess is an open-source, JDBC driver.
+
+http://ucanaccess.sourceforge.net/site.html
+
+That has two dependencies, one of which has two more dependencies.
+
+jackcess-2.0.0.jar or later
+
+    commons-lang-2.4.jar
+
+    commons-logging-1.0.4.jar
+
+hsqldb.jar(2.2.5)
+
+Those are all open-source.  Do an internet search, download, unzip if necessary and put all four jars plus the one for UCanAccess in a directory in your project (e.g. JDBC-to-MSAccess).  If using Ecplise, add to your build path by choosing from the menu "Project / Properties / Java Compiler / Libraries / Add External JARs" and select all five jar files.
+
+The connection logic is really simple:
+
+---
+
+String strConnectionString = "";
+
+Connection conAdministrator = null;
+
+// Register driver
+
+Class.forName( "net.ucanaccess.jdbc.UcanaccessDriver" );
+
+            
+
+// System.getProperty( "user.dir" ) => Current working directory from where application was started
+
+strConnectionString = "jdbc:ucanaccess://" + System.getProperty( "user.dir" )  + "\\Your-database-name.<mdb or accdb>";
+
+// Open a connection to the database
+
+conAdministrator = DriverManager.getConnection( strConnectionString );
+
+---
+
+Happy coding
